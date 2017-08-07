@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017/6/12 ?W?? 11:24:29 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="ch01.model.StockDailyRecord" table="STOCKDAILYRECORD">
+        <id name="dailyRecordId" type="long">
+            <column name="DAILYRECORDID" />
+            <generator class="assigned" />
+        </id>
+        <property name="stockId" type="long">
+            <column name="STOCKID" />
+        </property>
+        
+        <property name="priceOpen" type="double">
+            <column name="PRICEOPEN" />
+        </property>
+        <property name="priceClose" type="double">
+            <column name="PRICECLOSE" />
+        </property>
+        <property name="priceChange" type="double">
+            <column name="PRICECHANGE" />
+        </property>
+        <property name="volume" type="long">
+            <column name="VOLUME" />
+        </property>
+        <property name="date" type="java.util.Date">
+            <column name="DATE" />
+        </property>
+    </class>
+</hibernate-mapping>

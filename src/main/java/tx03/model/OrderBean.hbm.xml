@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="_08_hibernateandspring.model.OrderBean" table="SH_ORDERBEAN">
+        <id name="odid" type="java.lang.Integer">
+            <column name="ODID" />
+            <generator class="native" />
+        </id>
+        <property name="cmid" type="java.lang.Integer">
+            <column name="cmid" />
+        </property>
+        <property name="orderDate" type="java.util.Date">
+            <column name="ORDERDATE" />
+        </property>
+        <property name="amount" type="java.lang.Double">
+            <column name="AMOUNT" />
+        </property>
+        <property name="shippingAddress" type="java.lang.String">
+            <column name="SHIPPINGADDRESS" />
+        </property>
+        <property name="bno" type="java.lang.String">
+            <column name="BNO" />
+        </property>
+        <property name="InvoiceTitle" type="java.lang.String">
+            <column name="INVOICETITLE" />
+        </property>
+        <set name="items" inverse="false" table="ORDERITEMBEAN" lazy="true">
+            <key>
+                <column name="ODID" />
+            </key>
+            <one-to-many class="_08_hibernateandspring.model.OrderItemBean" />
+        </set>
+    </class>
+</hibernate-mapping>

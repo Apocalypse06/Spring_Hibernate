@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="_08_hibernateandspring.model.OrderItemBean" table="SH_ORDERITEMBEAN">
+        <id name="oiid" type="java.lang.Integer">
+            <column name="OIID" />
+            <generator class="native" />
+        </id>
+        <property name="adid" type="java.lang.Integer">
+            <column name="ADID" />
+        </property>
+        
+        <many-to-one name="odid" class="_08_hibernateandspring.model.OrderBean" >
+            <column name="ODID" not-null="true"/>
+        </many-to-one>
+        <property name="pdid" type="java.lang.Integer">
+            <column name="PDID" />
+        </property>
+        <property name="quantity" type="java.lang.Integer">
+            <column name="QUANTITY" />
+        </property>
+        <property name="approved" type="java.lang.Boolean">
+            <column name="APPROVED" />
+        </property>
+        <property name="price" type="java.lang.Integer">
+            <column name="PRICE" />
+        </property>
+    </class>
+</hibernate-mapping>

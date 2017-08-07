@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017/6/12 ?W?? 11:24:29 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+ <class name="ch01.model.Stock" table="STOCK">
+  <id name="stockId" type="long">
+   <column name="STOCK_ID"/>
+   <generator class="native"/>
+  </id>
+  <property name="stockCode" type="java.lang.String">
+      <column name="STOCK_CODE" />
+  </property>
+  <property generated="never" lazy="false" name="stockName" type="java.lang.String">
+   <column name="STOCK_NAME"/>
+  </property>
+  <property generated="never" lazy="false" name="capital" type="long">
+   <column name="CAPITAL"/>
+  </property>
+  
+ </class>
+</hibernate-mapping>

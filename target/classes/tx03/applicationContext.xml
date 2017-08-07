@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+	<context:component-scan base-package="tx03"></context:component-scan>
+	<context:property-placeholder location="classpath:db.properties" />
+
+	<bean id='dataSource' class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<property name="user" value='${jdbc.user}'></property>
+		<property name="password" value='${jdbc.password}'></property>
+		<property name="driverClass" value='${jdbc.driverClass}'></property>
+		<property name="jdbcUrl" value='${jdbc.jdbcUrl}'></property>
+		<property name="initialPoolSize" value='${jdbc.initPoolSize}'></property>
+		<property name="maxPoolSize" value='${jdbc.maxPoolSize}'></property>
+	</bean>
+
+	<bean id='sessionFactory'
+		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+		<property name="dataSource" ref='dataSource' />
+		<property name="configLocation" value='classpath:tx03/hibernate.cfg.xml' /><!--原本hibernate組態檔位置 -->
+		<!-- <property name="mappingLocations" value='classpath:tx03/model/*.hbm.xml'/> --><!--用Mapping的方式 -->
+		<property name="packagesToScan" value="tx03.model"></property><!--Mapping註釋的方式 -->
+	</bean>
+
+	<bean id='transactionManager'
+		class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+		<property name="sessionFactory" ref='sessionFactory'></property>
+	</bean>
+
+	<tx:advice id='txAdvuce' transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="*" />
+		</tx:attributes>
+	</tx:advice>
+
+	<aop:config>
+		<aop:pointcut
+			expression="execution(* tx03.facade.*.*(..) ) || execution(*  tx03.dao.*.*(..) )"
+			id="txPointcut" />
+		<aop:advisor advice-ref="txAdvuce" pointcut-ref="txPointcut" />
+	</aop:config>
+
+</beans>

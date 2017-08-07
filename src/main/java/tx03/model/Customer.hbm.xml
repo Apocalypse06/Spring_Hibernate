@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="_08_hibernateandspring.model.Customer" table="SH_CUSTOMER">
+        <id name="cmid" type="java.lang.Integer">
+            <column name="CMID" />
+            <generator class="native" />
+        </id>
+        <property name="name" type="java.lang.String">
+            <column name="NAME" />
+        </property>
+        <property name="unpaid_order_amount" type="java.lang.Integer">
+            <column name="UNPAID_ORDER_AMOUNT" />
+        </property>
+        <property name="reject" type="boolean">
+            <column name="REJECT" />
+        </property>
+    </class>
+</hibernate-mapping>

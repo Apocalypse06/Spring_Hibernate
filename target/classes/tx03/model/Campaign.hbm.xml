@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="_08_hibernateandspring.model.Campaign" table="SH_CAMPAIGN">
+        <id name="adid" type="java.lang.Integer">
+            <column name="ADID" />
+            <generator class="native" />
+        </id>
+        <property name="pdid" type="java.lang.Integer">
+            <column name="PDID" />
+        </property>
+        <property name="startDateTime" type="java.sql.Timestamp">
+            <column name="STARTDATETIME" />
+        </property>
+        <property name="endDateTime" type="java.sql.Timestamp">
+            <column name="ENDDATETIME" />
+        </property>
+        <property name="productPrice" type="java.lang.Integer">
+            <column name="PRODUCTPRICE" />
+        </property>
+    </class>
+</hibernate-mapping>
